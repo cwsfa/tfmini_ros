@@ -2,7 +2,6 @@
 
 int main(int argc, char **argv){
   ros::init(argc, argv, "tfmini_ros_node");
-  //ros::NodeHandle nh("~");
   ros::NodeHandle nh("~");
   std::string id = "TFmini"; // TF Frame id
   std::string topic_name = "range"; // ROS Topic name
