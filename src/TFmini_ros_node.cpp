@@ -32,15 +32,16 @@ int main(int argc, char **argv){
     dist = tfmini_obj->getDist();
     if(dist > 0 && dist < TFmini_range.max_range) {
       TFmini_range.range = dist;
-      TFmini_range.header.stamp = ros::Time::now();
-      pub_range.publish(TFmini_range);
-    }
-    else if(dist == -1.0) {
-      ROS_ERROR_STREAM("Failed to read data. TFmini node stopped!");
-      break;
     }
     else if(dist == 0.0) {
-      ROS_ERROR_STREAM("Data validation error!");
+      TFmini_range.range = TFmini_range.max_range;
+    }
+    TFmini_range.header.stamp = ros::Time::now();
+    pub_range.publish(TFmini_range); // publish data
+
+    if(dist == -1.0) {
+      ROS_ERROR_STREAM("Failed to read data. TFmini node stopped!");
+      break;
     }
   }
 
